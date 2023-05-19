@@ -33,7 +33,7 @@ body {
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 img {
@@ -75,15 +75,8 @@ img {
   padding: 0;
 }
 
-.header {
-  padding: 10px 20px 0;
-}
-.header--bottom {
-  border-bottom: 1px solid #d9d9d9;
-}
-
 .navigation {
-  padding: 10px 0 18px;
+  padding: 20px 20px 18px;
 }
 
 .navigation__list {
@@ -125,12 +118,19 @@ img {
   top: calc(50% + 5px);
 }
 
+.hero__container {
+  display: grid;
+  justify-items: center;
+}
+
 .hero__header {
   position: relative;
   background-image: url("../img/cat-index-background.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-size: auto calc(100% - 135px);
+  background-position: top;
+  padding: 27px 20px 299px 20px;
+  grid-area: 1/-1;
   width: 100%;
   min-height: 302px;
   z-index: 2;
@@ -146,7 +146,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 135px);
   background-color: rgba(104, 183, 56, 0.85);
   z-index: 1;
 }
@@ -156,20 +156,24 @@ img {
   font-size: 36px;
   line-height: 36px;
   font-weight: 400;
-  margin: 27px 20px 0 20px;
+  padding: 0;
+  margin: 0;
   z-index: 3;
 }
 
 .hero__subtitle {
   font-size: 14px;
   line-height: 14px;
-  margin: 0 auto;
+  margin: 0;
   z-index: 3;
 }
 
 .hero__img {
+  display: grid;
   position: relative;
-  margin: -135px auto 0 auto;
+  margin: 0;
+  grid-area: 1/-1;
+  align-self: end;
   z-index: 3;
 }
 
@@ -179,7 +183,9 @@ img {
   padding: 8px 44px;
   background-color: #68b738;
   text-transform: uppercase;
-  margin: 0 20px;
+  margin: 0;
+  width: 100%;
+  max-width: 280px;
 }
 
 .catalog {
@@ -296,6 +302,7 @@ img {
   height: 60px;
   display: flex;
   flex-shrink: 0;
+  align-self: flex-start;
   justify-content: center;
   align-items: center;
 }
@@ -430,11 +437,11 @@ img {
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  padding: 40px 0;
 }
 
 .footer__img {
   display: block;
-  padding: 40px 0 20px 0;
 }
 
 .partner {
@@ -465,6 +472,7 @@ img {
 
 .additionally {
   padding: 25px 20px 0;
+  overflow: hidden;
 }
 
 .additionally__title {
@@ -555,17 +563,14 @@ img {
 }
 
 .promotion {
-  background-image: url("../img/cat-catalog.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 290px;
   padding: 35px 20px;
   margin: 0;
-  position: relative;
-  z-index: 1;
 }
 
 .promotion__container {
+  background-image: url("../img/cat-catalog.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -573,9 +578,8 @@ img {
   justify-content: center;
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 290px;
 }
-
 .promotion__container::after {
   content: "";
   position: absolute;
@@ -606,6 +610,7 @@ img {
 
 .form {
   padding: 0 20px;
+  overflow: hidden;
 }
 
 .form__container {
@@ -677,18 +682,11 @@ img {
   transform: translate(-50%, 0%) rotate(-45deg);
 }
 
-.menu-button::before {
-  content: "";
-  width: 100%;
-  display: block;
-  height: 0;
-  border: 1px solid #e6e6e6;
-}
-
 .menu-button__link {
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .menu-button__link span {
@@ -699,20 +697,23 @@ img {
   text-transform: uppercase;
   color: #000000;
   padding: 22px 0 24px;
-  margin: 0 auto;
+  margin: 0;
   list-style: none;
-}
-.menu-button__link span__link::after {
-  content: "";
-  width: 100%;
-  display: block;
-  height: 0;
-  border: 1px solid #e6e6e6;
 }
 
 .border-bottom {
   width: 100%;
-  border: 1px solid #d9d9d9;
+  border-bottom: 2px solid #d9d9d9;
+}
+
+.border-bottom-2 {
+  width: 100%;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.border-top {
+  width: 100%;
+  border-top: 2px solid #e6e6e6;
 }
 
 .form-contact {
@@ -733,6 +734,7 @@ img {
   flex-shrink: 0;
   margin: 0 0 35px 0;
   width: 100%;
+  padding: 26px 0 0 0;
 }
 .form-contact__legend::after {
   content: "";
@@ -817,6 +819,8 @@ img {
   line-height: 18px;
   color: #444444;
   border: 1px solid #e7e7e7;
+  margin: 0;
+  resize: vertical;
 }
 .form-comment__massage::placeholder {
   font-family: "Oswald", "Arial", sans-serif;
@@ -916,10 +920,6 @@ img {
   gap: 16px;
 }
 
-.form-extra__input {
-  display: none;
-}
-
 .form-extra__indicator {
   display: flex;
   align-items: center;
@@ -955,14 +955,17 @@ img {
   flex-direction: column;
   gap: 13px;
   padding: 22px 0 19px;
+  position: relative;
 }
 .form-radio::after {
   content: "";
-  margin: 6px -20px 0;
-  height: 0;
-  width: 320px;
-  display: block;
-  border: 1px solid #d9d9d9;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200vw;
+  height: 2px;
+  background-color: #d9d9d9;
+  transform: translateX(-50%);
 }
 
 .form-radio__label {
@@ -978,10 +981,6 @@ img {
   font-weight: 400;
   text-transform: uppercase;
   color: #222222;
-}
-
-.form-radio__input {
-  display: none;
 }
 
 .form-radio__indicator {
@@ -1019,6 +1018,10 @@ img {
 .catalog-price__list {
   display: flex;
   justify-content: space-between;
+}
+
+.catalog-price__text {
+  max-width: 40px;
 }
 
 .catalog-more {
@@ -1130,14 +1133,8 @@ img {
   line-height: 18px;
   font-weight: 400;
   color: #444444;
-  margin: 22px 0 15px 0;
-}
-.catalog-preview__subtitle::after {
-  content: "";
-  margin: 23px 0 0 0;
-  width: 100%;
-  display: block;
-  border: 1px solid #d9d9d9;
+  padding: 23px 0 15px 0;
+  margin: 0 0 15px 0;
 }
 
 .catalog-preview__content {
@@ -1152,17 +1149,30 @@ img {
   line-height: 16px;
   font-weight: 400;
   color: #000000;
-  padding: 4px 0;
-  margin: 19px 0 0 0;
+  padding: 0;
+  margin: 0;
   text-transform: uppercase;
-  border: none;
-  cursor: pointer;
   outline: none;
   text-decoration: none;
+}
+.catalog-preview__button:hover .catalog-preview__icon {
+  width: 26px;
 }
 
 .catalog-preview__icon {
   margin: 0 0 0 15px;
+  width: 18px;
+  transition: all 0.3s ease;
+}
+.catalog-preview__icon:hover {
+  width: 26px;
+}
+
+.catalog-preview__block {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  vertical-align: top;
 }
 
 .main-index__container {
